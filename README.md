@@ -1,6 +1,7 @@
 # svelte zen garden
 
-hosted at https://svelte-zengarden.netlify.com/
+- hosted at https://svelte-zengarden.netlify.com/
+- source at https://github.com/sw-yx/svelte-zen-garden
 
 
 You can edit your CSS and it updates live.

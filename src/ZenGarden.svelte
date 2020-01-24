@@ -69,9 +69,9 @@ And a few tips on building your CSS file:
     <div class="summary" id="zen-summary" role="article">
       <p>A demonstration of what can be accomplished through <abbr title="Cascading Style Sheets">CSS</abbr>-based
         design. Select any style sheet from the list to load it into this page.</p>
-      <p>Download the example <a href="/examples/index" title="This page's source HTML code, not to be modified.">html
-          file</a> and <a href="/examples/style.css" title="This page's sample CSS, the file you may modify.">css
-          file</a></p>
+      <p>This site is hosted at 
+        <a href="https://svelte-zengarden.netlify.com/">https://svelte-zengarden.netlify.com/</a> and 
+        the source is at <a href="https://github.com/sw-yx/svelte-zen-garden">https://github.com/sw-yx/svelte-zen-garden</a></p>
     </div>
 
     <div class="preamble" id="zen-preamble" role="article">
