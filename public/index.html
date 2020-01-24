@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset='utf-8'>
+	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.csszengarden.com/zengarden.xml">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="swyx">
+	<meta name="description" content="A demonstration of what can be accomplished visually through CSS-based design. With Svelte">
+	<meta name="robots" content="all">
+	<title>Svelte Zen Garden</title>
+	<link rel='icon' type='image/png' href='favicon.png'>
+	<link rel='stylesheet' href='global.css'>
+	<link rel='stylesheet' href='bundle.css'>
+
+	<script defer src='bundle.js'></script>
+	<script>
+
+	self.MonacoEnvironment = {
+		getWorkerUrl: function (moduleId, label) {
+			if (label === 'json') {
+				return './json.worker.bundle.js';
+			}
+			if (label === 'css') {
+				return './css.worker.bundle.js';
+			}
+			if (label === 'html') {
+				return './html.worker.bundle.js';
+			}
+			if (label === 'typescript' || label === 'javascript') {
+				return './ts.worker.bundle.js';
+			}
+			return './editor.worker.bundle.js';
+		}
+	}
+	</script>
+</head>
+
+<body id="css-zen-garden" class="vsc-initialized">
+</body>
+</html>
