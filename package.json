@@ -21,6 +21,7 @@
     "start": "npm run dev"
   },
   "dependencies": {
-    "monaco-editor": "^0.19.3"
+    "monaco-editor": "^0.19.3",
+    "node-fetch": "^2.6.0"
   }
 }

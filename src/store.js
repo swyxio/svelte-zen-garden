@@ -23,20 +23,28 @@ userCSS.subscribe((value) => {
     try {
       new URL(value);
       // if we get here, it is a valid url, we should try to fetch
-      fetch(value)
-        .then((r) => r.json())
+      fetch(`/.netlify/functions/proxy?path=${value}`)
+        .then((r) => console.log({ r }) || r.json())
         .then((data) => {
           // shape of data should be
           // {
-          // 	'zengarden.css': {
-          // 		'content': "YOURCSSHERE"
+          // 	data: {
+          // 		files: {
+          // 			'zengarden.css': {
+          // 				'content': "YOURCSSHERE"
+          // 			}
+          // 		}
           // 	}
           // }
-          const file = data['zengarden.css'];
-          if (file && file.content) {
-            gistCSS = file.content;
+
+          if (
+            data.files &&
+            data.files['zengarden.css'] &&
+            data.files['zengarden.css'].content
+          ) {
+            gistCSS = data.files['zengarden.css'].content;
             console.log({ gistCSS });
-            userCSS.set(file.content);
+            userCSS.set(gistCSS);
           }
         });
       return; // dont do the other stuff

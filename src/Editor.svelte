@@ -16,6 +16,7 @@
         roundedSelection: false,
         scrollBeyondLastLine: false,
         readOnly: false,
+        tabSize: 2,
         theme: "vs-dark",
         minimap: {
           enabled: false
