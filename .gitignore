@@ -2,6 +2,5 @@
 node_modules
 public/bundle.*
 package-lock.json
-yarn.lock
 # Local Netlify folder
 .netlify
