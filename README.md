@@ -1,64 +1,13 @@
-# svelte app
+# svelte zen garden
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template-webpack.
-
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
-
-```bash
-npx degit sveltejs/template-webpack svelte-app
-cd svelte-app
-```
-
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+hosted at https://svelte-zengarden.netlify.com/
 
 
-## Get started
+You can edit your CSS and it updates live.
 
-Install the dependencies...
+you can also paste in a link to github gist in the editor. if the github gist has a file called `zengarden.css` it will pull that css and apply it.
 
-```bash
-cd svelte-app
-npm install
-```
+Once you're happy with what you have, you can send it as a url by appending a `path` search param, e.g.
 
-...then start webpack:
-
-```bash
-npm run dev
-```
-
-Navigate to [localhost:8080](http://localhost:8080). You should see your app running. Edit a component file in `src`, save it, and the page should reload with your changes.
-
-
-## Deploying to the web
-
-### With [now](https://zeit.co/now)
-
-Install `now` if you haven't already:
-
-```bash
-npm install -g now
-```
-
-Then, from within your project folder:
-
-```bash
-now
-```
-
-As an alternative, use the [Now desktop client](https://zeit.co/download) and simply drag the unzipped project folder to the taskbar icon.
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public
-```
+- https://svelte-zengarden.netlify.com/?path=https://gist.github.com/sw-yx/0e1d14276ef9d2608453fed3c7dfa4ec
+- https://svelte-zengarden.netlify.com/?path=https://gist.github.com/sw-yx/67a8c6f39aae5e206b43eb662edb75b9

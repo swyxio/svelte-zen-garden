@@ -8,17 +8,18 @@ function validateUrl(value) {
 }
 
 let gistCSS = null;
-let pathFromUrl = document.location.pathname.slice(1);
+let pathFromUrl = new URLSearchParams(document.location.search).get('path');
 // e.g. 'https://gist.github.com/sw-yx/0e1d14276ef9d2608453fed3c7dfa4ec'
 
 let _userCSS = localStorage.getItem('userCSS');
-export const userCSS = writable(
-  _userCSS ? JSON.parse(_userCSS) : defaultUserCSS()
-);
+_userCSS = _userCSS ? JSON.parse(_userCSS) : defaultUserCSS();
+let initCSS = pathFromUrl || _userCSS;
+export const userCSS = writable(initCSS);
+
+// special hacks to respond
 userCSS.subscribe((value) => {
   // secret hack - to restore default css - type 'default'
   // try to resolve gist URL's
-  console.log({ value });
   if (gistCSS !== value && validateUrl(value)) {
     try {
       new URL(value);
