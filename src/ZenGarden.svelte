@@ -38,14 +38,15 @@
     if (target.className === 'labelDiv') return // dont go on yourself
     let rect = target.getBoundingClientRect();
     let labelDiv = getDivEl(target)
-    if (target.style.outline) {
-      oldInlineStyle = target.style.outline
-    }
+    // if (target.style.outline) {
+    //   oldInlineStyle = target.style.outline
+    // }
     target.style.outline = '1px solid red'
     target.insertAdjacentElement('afterend', labelDiv);
     setTimeout(() => {
-      target.style.outline = oldInlineStyle || null
-      oldInlineStyle = undefined
+      // target.style.outline = oldInlineStyle || null
+      // oldInlineStyle = undefined
+      target.style.outline = null
       labelDiv.remove()
       if (isInsideElement(rect)) handleMouseenter(event) // recurse to persist
     }, 300)
