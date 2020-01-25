@@ -70,18 +70,23 @@
     height: 100%;
     width: 100%;
   }
-  #handButton {
+  .handButton {
     position: fixed;
     width: 60px;
     height: 60px;
     z-index: 9999;
     top: -30px;
     right: -30px;
-    background-color: #0C9;
     border-radius: 50px;
     text-align: center;
     box-shadow: 2px 2px 3px #999;
     font-size: 3rem;
+  }
+  .open {
+    background-color: #0C9;
+  }
+  .close {
+    background-color: #F55;
   }
 </style>
 <div use:pannable
@@ -90,7 +95,15 @@
   translate({x}px,{y}px)"
   id="editorWithButton"
 >
-  <button id="handButton" on:click={toggleEditor}>✍️</button>
+  {#if $showEditor}
+  <button class="handButton close" on:click={toggleEditor}>
+    ✖️    
+  </button>
+  {:else}
+  <button class="handButton open" on:click={toggleEditor}>
+    ✍️
+  </button>
+  {/if}
   {#if $showEditor}
   <div id="monaco-container"></div>
   {/if}

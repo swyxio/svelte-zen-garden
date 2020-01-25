@@ -2,10 +2,14 @@
 
 - hosted at https://svelte-zengarden.netlify.com/
 - source at https://github.com/sw-yx/svelte-zen-garden
+- Engage on Twitter! https://twitter.com/swyx/status/1220895891860676608
+- Read more on Blogpost: https://www.swyx.io/writing/svelte-zen-garden/
 
 You can edit your CSS and it updates live.
 
 ![sveltezen](https://user-images.githubusercontent.com/6764957/73115075-7f2d4300-3eef-11ea-9c28-d499b7fbb4c1.gif)
+
+## Pull from GitHub Gists
 
 you can also paste in a link to github gist in the editor. if the github gist has a file called `zengarden.css` it will pull that css and apply it.
 
