@@ -18,7 +18,6 @@ export const userCSS = writable(initCSS);
 
 // special hacks to respond
 userCSS.subscribe((value) => {
-  // secret hack - to restore default css - type 'default'
   // try to resolve gist URL's
   if (gistCSS !== value && validateUrl(value)) {
     try {
@@ -54,9 +53,7 @@ userCSS.subscribe((value) => {
     }
   }
 
-  // save to localstorage
-
-  // if (value === '.default {}') userCSS.set(defaultUserCSS());
+  // secret hack - to restore default css - type 'default'
   if (value === 'default') userCSS.set(defaultUserCSS());
   if (value) localStorage.setItem('userCSS', JSON.stringify(value));
 });
