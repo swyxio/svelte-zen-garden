@@ -1,30 +1,34 @@
 <script>
-  import { onMount, onDestroy } from 'svelte'
+  import { 
+    // onMount, 
+    onDestroy } from 'svelte'
   import { userCSS, showEditor } from './store'
-  import * as monaco from 'monaco-editor';
+  // import { editor as MonacoEditor } from 'monaco-editor';
   import { pannable } from './pannable.js';
   let editor, modelChangeSub
   let x = 0
   let y = 0
-  onMount(mountEditor)
+  // onMount(mountEditor)
   function mountEditor() {
     setTimeout(() => {
-      editor = monaco.editor.create(document.getElementById('monaco-container'), {
-        value: $userCSS.split(`
+      import("monaco-editor").then(monaco => {
+        editor = monaco.editor.create(document.getElementById('monaco-container'), {
+          value: $userCSS.split(`
 `).join('\n'),
-        language: 'css',
-        roundedSelection: false,
-        scrollBeyondLastLine: false,
-        readOnly: false,
-        tabSize: 2,
-        theme: "vs-dark",
-        minimap: {
-          enabled: false
-          // renderCharacters: false
-        }
-      });
-      modelChangeSub = editor.getModel().onDidChangeContent(v => {
-        userCSS.set(editor.getModel().getValue())
+          language: 'css',
+          roundedSelection: false,
+          scrollBeyondLastLine: false,
+          readOnly: false,
+          tabSize: 2,
+          theme: "vs-dark",
+          minimap: {
+            enabled: false
+            // renderCharacters: false
+          }
+        });
+        modelChangeSub = editor.getModel().onDidChangeContent(v => {
+          userCSS.set(editor.getModel().getValue())
+        })
       })
     }, 200)
   }
