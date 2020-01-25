@@ -129,8 +129,7 @@ And a few tips on building your CSS file:
     </header>
 
     <div class="summary" id="zen-summary" role="article">
-      <p>A demonstration of what can be accomplished through <abbr title="Cascading Style Sheets">CSS</abbr>-based
-        design. Click the ✍️ button to see the Editor, drag it around, and start editing CSS! 
+      <p>A loving homage to <a href="http://www.csszengarden.com/">CSS Zen Garden!</a>. Click the ✍️ button to see the Editor, drag it around, and start editing CSS! 
         You can also paste in URLs of <strong>GitHub gists</strong> that has css in a `zengarden.css` file (<a href="https://svelte-zengarden.netlify.com/?path=https://gist.github.com/sw-yx/67a8c6f39aae5e206b43eb662edb75b9">example</a>)</p>
       <p>This site is hosted at 
         <a href="https://svelte-zengarden.netlify.com/">https://svelte-zengarden.netlify.com/</a> and 
