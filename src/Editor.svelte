@@ -1,6 +1,6 @@
 <script>
   import { onMount, onDestroy } from 'svelte'
-  import { userCSS } from './store'
+  import { userCSS, showEditor } from './store'
   import * as monaco from 'monaco-editor';
   import { pannable } from './pannable.js';
   let editor, modelChangeSub
@@ -50,10 +50,9 @@
     x = x + event.detail.dx
     y = y + event.detail.dy
   }
-  let showEditor = true
   function toggleEditor() {
-    showEditor = !showEditor
-    if (showEditor) mountEditor()
+    $showEditor = !$showEditor
+    if ($showEditor) mountEditor()
   }
 </script>
 
@@ -92,7 +91,7 @@
   id="editorWithButton"
 >
   <button id="handButton" on:click={toggleEditor}>✍️</button>
-  {#if showEditor}
+  {#if $showEditor}
   <div id="monaco-container"></div>
   {/if}
 </div>

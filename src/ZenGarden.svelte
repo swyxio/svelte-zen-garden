@@ -1,6 +1,6 @@
 <script>
   import { onMount, onDestroy } from 'svelte'
-  import { userCSS } from './store'
+  import { userCSS, showEditor } from './store'
   onMount(renderCSS)
   onDestroy(() => {
     var ss = document.getElementById("unique-stylesheet-id")
@@ -22,11 +22,72 @@
     console.log({ _userCSS })
     renderCSS()
   }
+
+  // track mouse pos
+  let x = 0, y = 0
+  function recordMouseMove(event) {
+    x = event.clientX;
+    y = event.clientY;
+  }
+
+
+  function handleMouseenter(event) {
+    if (!$showEditor) return
+    let oldInlineStyle
+    let target = event.target
+    if (target.className === 'labelDiv') return // dont go on yourself
+    let rect = target.getBoundingClientRect();
+    let labelDiv = getDivEl(target)
+    if (target.style.outline) {
+      oldInlineStyle = target.style.outline
+    }
+    target.style.outline = '1px solid red'
+    target.insertAdjacentElement('afterend', labelDiv);
+    setTimeout(() => {
+      target.style.outline = oldInlineStyle || null
+      oldInlineStyle = undefined
+      labelDiv.remove()
+      if (isInsideElement(rect)) handleMouseenter(event) // recurse to persist
+    }, 300)
+  }
+
+  function isInsideElement(rect) {
+    return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom
+  }
+  function getDivEl(target){
+    let rect = target.getBoundingClientRect();
+    let id = target.id ? `#${target.id}` : ''
+    let classes = target.className ? target.className.split(' ').map(x => `.${x}`).join(' ') : ''
+    let tag = target.tagName.toLowerCase()
+    let newDiv = document.createElement(safeTag(tag))
+    let newContent = document.createTextNode([id, classes, tag].filter(Boolean).join(' '));
+    newDiv.appendChild(newContent);
+    // newDiv.className = target.className ? target.className + ' labtargetDiv' : 'labtargetDiv'
+    newDiv.className = 'labelDiv'
+    // if (id) newDiv.id = id
+    newDiv.style.position = 'fixed'
+    newDiv.style.top = `${rect.top}px`
+    newDiv.style.left = `${rect.right}px`
+    newDiv.style.zIndex = '999'
+
+    // maybe want to let user style this
+    newDiv.style.background = "rgba(200, 200, 200, 0.8)";
+    newDiv.style.color = "black";
+    newDiv.style.padding = "3px";
+    return newDiv
+  }
+  function safeTag(tag){
+    return 'div' // disabled this functionality for now, doesnt look good
+    
+    // // some things we dont actually want to clone
+    // if ('h1 h2 h3 h4 h5 h6 p div section main article aside details figure footer header summary time nav'.split(' ').includes(tag)) return tag
+    // else return 'div'
+  }
+
 </script>
 <svelte:head>
   <style id="unique-stylesheet-id"> </style>
 </svelte:head>
-
 <!--
 
 
@@ -57,8 +118,8 @@ And a few tips on building your CSS file:
 	
 -->
 
-
-<div class="page-wrapper">
+<!-- <div bind:this={zenGardenContainer} id="zenGardenContainer"> -->
+<div class="page-wrapper" on:mouseover={handleMouseenter} on:mousemove={recordMouseMove}>
 
   <section class="intro" id="zen-intro">
     <header role="banner">
@@ -68,7 +129,8 @@ And a few tips on building your CSS file:
 
     <div class="summary" id="zen-summary" role="article">
       <p>A demonstration of what can be accomplished through <abbr title="Cascading Style Sheets">CSS</abbr>-based
-        design. Select any style sheet from the list to load it into this page.</p>
+        design. Click the ✍️ button to see the Editor, drag it around, and start editing CSS! 
+        You can also paste in URLs of <strong>GitHub gists</strong> that has css in a `zengarden.css` file (<a href="https://svelte-zengarden.netlify.com/?path=https://gist.github.com/sw-yx/67a8c6f39aae5e206b43eb662edb75b9">example</a>)</p>
       <p>This site is hosted at 
         <a href="https://svelte-zengarden.netlify.com/">https://svelte-zengarden.netlify.com/</a> and 
         the source is at <a href="https://github.com/sw-yx/svelte-zen-garden">https://github.com/sw-yx/svelte-zen-garden</a></p>
@@ -282,3 +344,4 @@ These only remain for historical design compatibility. They might go away one da
 <div class="extra4" role="presentation"></div>
 <div class="extra5" role="presentation"></div>
 <div class="extra6" role="presentation"></div>
+<!-- </div> -->

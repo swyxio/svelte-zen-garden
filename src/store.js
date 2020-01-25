@@ -1,5 +1,7 @@
 import { writable } from 'svelte/store';
 
+export const showEditor = writable(true);
+
 function validateUrl(value) {
   // https://stackoverflow.com/questions/8667070/javascript-regular-expression-to-validate-url
   return /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(
@@ -61,8 +63,16 @@ userCSS.subscribe((value) => {
 function defaultUserCSS() {
   return `/* Any CSS typed here will be rendered onto Zen Garden */
 /* type 'default' to reset CSS to default CSS */
-/* paste a gist to download 
 
+/* you can style label hovers too */
+.labelDiv {
+  background: rgba(200,200,200,0.8);
+  color: black; /* edit and hover over an element */
+  padding: 3px;
+}
+
+/* you can paste a gist with css, or append to url with 'path' param */
+/* e.g. https://svelte-zengarden.netlify.com/?path=https://gist.github.com/sw-yx/67a8c6f39aae5e206b43eb662edb75b9 */
 
 /* Default CSS from: http://www.csszengarden.com/217/217.css - no changes made */
 /* css Zen Garden submission 217 - 'Screen Filler', by Elliot Jay Stocks, http://elliotjaystocks.com/  */
